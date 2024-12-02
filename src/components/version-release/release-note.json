@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_version_release_release_notes",
+  "info": {
+    "displayName": "Release-Note"
+  },
+  "options": {},
+  "attributes": {
+    "note": {
+      "type": "string"
+    }
+  }
+}

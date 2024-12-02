@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_user_subscription_details",
+  "info": {
+    "displayName": "Subscription-Details"
+  },
+  "options": {},
+  "attributes": {
+    "subscriptionStatus": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "trialing",
+        "past_due",
+        "canceled",
+        "expired"
+      ]
+    },
+    "startDate": {
+      "type": "datetime"
+    },
+    "endDate": {
+      "type": "datetime"
+    },
+    "renewalDate": {
+      "type": "datetime"
+    },
+    "cancellationReason": {
+      "type": "string"
+    },
+    "subscribedUpdateAt": {
+      "type": "datetime"
+    },
+    "subscribedAt": {
+      "type": "datetime"
+    },
+    "payment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payment.payment"
+    },
+    "trialEndDate": {
+      "type": "datetime"
+    },
+    "gracePeriodEndDate": {
+      "type": "datetime"
+    },
+    "autoRenew": {
+      "type": "boolean"
+    }
+  }
+}

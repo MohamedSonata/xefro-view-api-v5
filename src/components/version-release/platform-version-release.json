@@ -1,0 +1,96 @@
+{
+  "collectionName": "components_version_release_platform_version_releases",
+  "info": {
+    "displayName": "Platform-Version-Release",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Windows",
+        "MacOs",
+        "Linux",
+        "Android",
+        "IOS",
+        "WEB"
+      ]
+    },
+    "versionName": {
+      "type": "string"
+    },
+    "versionCode": {
+      "type": "integer"
+    },
+    "releaseDate": {
+      "type": "datetime"
+    },
+    "isMandatory": {
+      "type": "boolean",
+      "default": false
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "recommended",
+        "high",
+        "mandatory"
+      ]
+    },
+    "downloadURL": {
+      "type": "string"
+    },
+    "appSize": {
+      "type": "decimal"
+    },
+    "releaseChannel": {
+      "type": "enumeration",
+      "enum": [
+        "Production",
+        "Beta"
+      ]
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "version": {
+      "type": "string"
+    },
+    "isUpdateBugFixing": {
+      "type": "boolean"
+    },
+    "releaseNotes": {
+      "displayName": "Release-Note",
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.release-note"
+    },
+    "updatesHighLights": {
+      "displayName": "Update-High-Light",
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.update-high-light"
+    },
+    "newFeatures": {
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.update-high-light"
+    },
+    "improvements": {
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.release-note"
+    },
+    "bugFixes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.release-note"
+    },
+    "minSupportedVersion": {
+      "type": "integer"
+    }
+  }
+}

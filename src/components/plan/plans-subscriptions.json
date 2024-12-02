@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_plan_plans_subscriptions",
+  "info": {
+    "displayName": "Plan-Benefits",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "benefit": {
+      "type": "string"
+    },
+    "isBenefitIncluded": {
+      "type": "boolean",
+      "default": false
+    },
+    "benefitDesc": {
+      "type": "string"
+    },
+    "subBenefits": {
+      "displayName": "Sub-Benefit",
+      "type": "component",
+      "repeatable": true,
+      "component": "plan-features.sub-benefit"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_version_release_update_high_lights",
+  "info": {
+    "displayName": "Update-High-Light",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "media": {
+      "displayName": "Media",
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.media"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "version_releases",
+  "info": {
+    "singularName": "version-release",
+    "pluralName": "version-releases",
+    "displayName": "Version-Releases",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "platformsVersionReleases": {
+      "displayName": "Platform-Version-Release",
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.platform-version-release"
+    },
+    "version": {
+      "type": "string"
+    },
+    "versionName": {
+      "type": "string"
+    },
+    "brief": {
+      "type": "string"
+    }
+  }
+}

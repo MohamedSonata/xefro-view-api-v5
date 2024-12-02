@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_plan_features_sub_benefits",
+  "info": {
+    "displayName": "Sub-Benefit"
+  },
+  "options": {},
+  "attributes": {
+    "benefit": {
+      "type": "string"
+    },
+    "isBenefitFeatureEnabled": {
+      "type": "boolean"
+    }
+  }
+}

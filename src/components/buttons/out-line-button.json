@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_buttons_out_line_buttons",
+  "info": {
+    "displayName": "Out-Line-Button"
+  },
+  "options": {},
+  "attributes": {
+    "buttonContent": {
+      "type": "string"
+    },
+    "bgColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    }
+  }
+}

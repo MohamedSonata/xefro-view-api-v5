@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_payments_payment_method",
+  "info": {
+    "displayName": "Payment-Method"
+  },
+  "options": {},
+  "attributes": {
+    "paymentStatus": {
+      "type": "boolean"
+    },
+    "orderId": {
+      "type": "biginteger"
+    },
+    "orderCreatedAt": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "errorOccured": {
+      "type": "boolean"
+    },
+    "dataMessage": {
+      "type": "string"
+    },
+    "cardType": {
+      "type": "string"
+    },
+    "txnResponseCode": {
+      "type": "string"
+    },
+    "PaymentMerchent": {
+      "type": "enumeration",
+      "enum": [
+        "Paymob",
+        "Paypal",
+        "Stripe",
+        "Wallet"
+      ]
+    },
+    "amountCents": {
+      "type": "string"
+    }
+  }
+}

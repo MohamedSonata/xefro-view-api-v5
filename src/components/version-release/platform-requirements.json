@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_version_release_platform_requirements",
+  "info": {
+    "displayName": "Platform-Requirements"
+  },
+  "options": {},
+  "attributes": {
+    "isMandatory": {
+      "type": "boolean",
+      "default": false
+    },
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Windows",
+        "MacOs",
+        "Linux",
+        "Android",
+        "IOS",
+        "WEB"
+      ]
+    },
+    "minSupportedVersionCode": {
+      "type": "integer"
+    },
+    "version": {
+      "type": "string"
+    },
+    "versionCode": {
+      "type": "integer"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "recommended",
+        "high",
+        "mandatory"
+      ]
+    },
+    "downloadURL": {
+      "type": "string"
+    }
+  }
+}

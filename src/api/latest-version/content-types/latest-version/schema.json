@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "latest_versions",
+  "info": {
+    "singularName": "latest-version",
+    "pluralName": "latest-versions",
+    "displayName": "LatestVersion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "version": {
+      "type": "string"
+    },
+    "versionName": {
+      "type": "string"
+    },
+    "brief": {
+      "type": "string"
+    },
+    "platformsRequirements": {
+      "displayName": "Platform-Requirements",
+      "type": "component",
+      "repeatable": true,
+      "component": "version-release.platform-requirements"
+    }
+  }
+}

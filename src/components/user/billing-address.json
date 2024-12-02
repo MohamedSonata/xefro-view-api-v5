@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_user_billing_addresses",
+  "info": {
+    "displayName": "Billing-Address"
+  },
+  "options": {},
+  "attributes": {
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "buildingNumber": {
+      "type": "string"
+    },
+    "apartment": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "floor": {
+      "type": "string"
+    }
+  }
+}

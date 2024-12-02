@@ -40,7 +40,15 @@ export default ({ env }) => {
         },
         schema: env('DATABASE_SCHEMA', 'public'),
       },
-      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
+      pool: { 
+        min: env.int('DATABASE_POOL_MIN', 2),
+        max: env.int('DATABASE_POOL_MAX', 10),
+        // acquireTimeoutMillis: 600000, // 	Time in milliseconds before timing out a database connection attempt
+        // createTimeoutMillis: 30000, // 	Time in milliseconds before timing out a create query attempt
+        // idleTimeoutMillis: 20000, //Time in milliseconds before free database connections are destroyed
+        // reapIntervalMillis: 20000, // 	Time in milliseconds to check for idle database connections to destroy
+        // createRetryIntervalMillis: 200 //Time in milliseconds to idle before retrying failed create actions
+         },
     },
     sqlite: {
       connection: {

@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_plan_plan_styles",
+  "info": {
+    "displayName": "Plan-Style",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "bgColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "priceTypeColor": {
+      "type": "string"
+    },
+    "dividerColor": {
+      "type": "string"
+    },
+    "isBenefitIncludedColor": {
+      "type": "string"
+    },
+    "subscribeButtonStyle": {
+      "displayName": "Out-Line-Button",
+      "type": "component",
+      "repeatable": false,
+      "component": "buttons.out-line-button"
+    }
+  }
+}
