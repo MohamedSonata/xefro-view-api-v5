@@ -4,7 +4,7 @@ services:
     # container_name: Xefro_View_Api_V5
     build: .
     # Change This Image name to Custom Image Docker Hub name Example sonata93/demo-app
-    image: mosonata/xefro-view-api-v5-img1:latest
+    image: mosonata/xefro-view-api-v5-img1
     restart: unless-stopped
     env_file: ./.env.production
    # We comment this line because we passing the env from envFile paramter
@@ -47,7 +47,7 @@ services:
     #platform: linux/amd64 #for platform error on Apple M1 chips
     restart: unless-stopped
     env_file: ./.env.production
-    image: postgres:12.0-alpine
+    image: postgres:latest
    # We comment this line because we passing the env from envFile paramter
     # environment:
     #   POSTGRES_USER: ${DATABASE_USERNAME}
