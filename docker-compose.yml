@@ -49,10 +49,10 @@ services:
     env_file: ./.env.production
     image: postgres:latest
    # We comment this line because we passing the env from envFile paramter
-    # environment:
-    #   POSTGRES_USER: ${DATABASE_USERNAME}
-    #   POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-    #   POSTGRES_DB: ${DATABASE_NAME}
+    environment:
+      POSTGRES_USER: xefromirror
+      POSTGRES_PASSWORD: superdream
+      POSTGRES_DB: strapiViewDB
     volumes:
       - strapi-data:/var/lib/postgresql/data/ #using a volume
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
