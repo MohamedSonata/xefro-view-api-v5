@@ -1,14 +1,9 @@
 // src/extensions/users-permissions/content-types/user/lifecycles.js
 
 module.exports = {
-    async afterUpdate(event){
-        console.log("AfyerAipdate");
-      const users=  await strapi.service("plugin::users-permissions.user").fetchAll({
-            populate:"*"
-           });;
-
-           console.log(users);
-    },
+    // async afterUpdate(event){
+  
+    // },
     async afterCreate(event) {
         const { result, params } = event;
 
@@ -86,24 +81,24 @@ module.exports = {
                     {
                         isMandatory: hasVersionReleaseData
                             ? versionReleaseData.platformsVersionReleases[index].isMandatory ??
-                            singleTypeReleaseData.platformsRequirements[index].isMandatory
+                            singleTypeReleaseData.platformsRequirements[index].isMandatory??false
                             : singleTypeRequirement.isMandatory,
                         platform: hasVersionReleaseData
-                            ? versionReleaseData.platformsVersionReleases[index].platform ?? singleTypeReleaseData.platformsRequirements[index].platform
+                            ? versionReleaseData.platformsVersionReleases[index].platform ?? singleTypeReleaseData.platformsRequirements[index].platform??"Windows"
                             : singleTypeRequirement.platform,
                         minSupportedVersionCode: hasVersionReleaseData
-                            ? versionReleaseData.platformsVersionReleases[index].minSupportedVersion ?? singleTypeReleaseData.platformsRequirements[index].minSupportedVersionCode
+                            ? versionReleaseData.platformsVersionReleases[index].minSupportedVersion ?? singleTypeReleaseData.platformsRequirements[index].minSupportedVersionCode??102
                             : singleTypeRequirement.minSupportedVersion,
                         version: hasVersionReleaseData
-                            ? versionReleaseData.platformsVersionReleases[index].version ?? singleTypeReleaseData.platformsRequirements[index].version
+                            ? versionReleaseData.platformsVersionReleases[index].version ?? singleTypeReleaseData.platformsRequirements[index].version??""
                             : singleTypeRequirement.version,
                         versionCode: hasVersionReleaseData
-                            ? versionReleaseData.platformsVersionReleases[index].versionCode ?? singleTypeReleaseData.platformsRequirements[index].versionCode
+                            ? versionReleaseData.platformsVersionReleases[index].versionCode ?? singleTypeReleaseData.platformsRequirements[index].versionCode??102
                             : singleTypeRequirement.versionCode,
                         priority: hasVersionReleaseData
-                            ? versionReleaseData.platformsVersionReleases[index].priority ?? singleTypeReleaseData.platformsRequirements[index].priority : singleTypeRequirement.priority,
+                            ? versionReleaseData.platformsVersionReleases[index].priority ?? singleTypeReleaseData.platformsRequirements[index].priority??"none" : singleTypeRequirement.priority,
                         downloadURL: hasVersionReleaseData
-                            ? versionReleaseData.platformsVersionReleases[index].downloadURL ?? singleTypeReleaseData.platformsRequirements[index].downloadURL : singleTypeRequirement.downloadURL
+                            ? versionReleaseData.platformsVersionReleases[index].downloadURL ?? singleTypeReleaseData.platformsRequirements[index].downloadURL??"" : singleTypeRequirement.downloadURL
     
                     }
     
