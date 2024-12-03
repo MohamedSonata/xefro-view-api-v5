@@ -46,7 +46,8 @@ module.exports = {
                 platformsRequirements: true
             }
         });
-        console.log('versionReleaseData:>>>>> ', singleTypeReleaseData);
+        console.log('singleTypeReleaseData:>>>>> ', singleTypeReleaseData);
+        console.log('versionReleaseData:>>>>> ', versionReleaseData);
 
         // // Ensure versionReleaseData and singleTypeReleaseData exist and have matching lengths
         // /**
