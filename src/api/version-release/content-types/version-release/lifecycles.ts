@@ -61,40 +61,7 @@ module.exports = {
         //  * @param {Object[]} singleTypeReleaseData - The version release data, including the associated platforms requirements.
         //  * @returns {Object[]} - An array of platform requirements, where each object contains details about a specific platform requirement.
         //  */
-        const platformsRequirementsUpdated = Array.from(versionReleaseData.platformsVersionReleases.map((singleTypeRequirement, index) => {
-            const hasVersionReleaseData = versionReleaseData.platformsVersionReleases &&
-                versionReleaseData.platformsVersionReleases.length > index &&
-                versionReleaseData.platformsVersionReleases[index] != null;
-            const platformsRequirementsOBJ = new PlatFormsRequirements(
-                {
-                    isMandatory: hasVersionReleaseData
-                        ? versionReleaseData.platformsVersionReleases[index].isMandatory ??
-                        singleTypeReleaseData.platformsRequirements[index].isMandatory
-                        : singleTypeRequirement.isMandatory,
-                    platform: hasVersionReleaseData
-                        ? versionReleaseData.platformsVersionReleases[index].platform ?? singleTypeReleaseData.platformsRequirements[index].platform
-                        : singleTypeRequirement.platform,
-                    minSupportedVersionCode: hasVersionReleaseData
-                        ? versionReleaseData.platformsVersionReleases[index].minSupportedVersion ?? singleTypeReleaseData.platformsRequirements[index].minSupportedVersionCode
-                        : singleTypeRequirement.minSupportedVersion,
-                    version: hasVersionReleaseData
-                        ? versionReleaseData.platformsVersionReleases[index].version ?? singleTypeReleaseData.platformsRequirements[index].version
-                        : singleTypeRequirement.version,
-                    versionCode: hasVersionReleaseData
-                        ? versionReleaseData.platformsVersionReleases[index].versionCode ?? singleTypeReleaseData.platformsRequirements[index].versionCode
-                        : singleTypeRequirement.versionCode,
-                    priority: hasVersionReleaseData
-                        ? versionReleaseData.platformsVersionReleases[index].priority ?? singleTypeReleaseData.platformsRequirements[index].priority : singleTypeRequirement.priority,
-                    downloadURL: hasVersionReleaseData
-                        ? versionReleaseData.platformsVersionReleases[index].downloadURL ?? singleTypeReleaseData.platformsRequirements[index].downloadURL : singleTypeRequirement.downloadURL
-
-                }
-
-            );
-
-            return platformsRequirementsOBJ.toJson();
-        }));
-        console.log('platformsRequirements', platformsRequirementsUpdated);
+       
 
 
 
@@ -108,7 +75,45 @@ module.exports = {
         //  * @param {Object[]} platformsRequirements - The new platform requirements for the version release.
         //  * @returns {Promise<Object>} - The updated version release data.
         //  */
+        if(versionReleaseData.platformsVersionReleases.length>0){
         try {
+           
+                const platformsRequirementsUpdated = Array.from(versionReleaseData.platformsVersionReleases.map((singleTypeRequirement, index) => {
+                const hasVersionReleaseData = versionReleaseData.platformsVersionReleases &&
+                    versionReleaseData.platformsVersionReleases.length > index &&
+                    versionReleaseData.platformsVersionReleases[index] != null;
+                const platformsRequirementsOBJ = new PlatFormsRequirements(
+                    {
+                        isMandatory: hasVersionReleaseData
+                            ? versionReleaseData.platformsVersionReleases[index].isMandatory ??
+                            singleTypeReleaseData.platformsRequirements[index].isMandatory
+                            : singleTypeRequirement.isMandatory,
+                        platform: hasVersionReleaseData
+                            ? versionReleaseData.platformsVersionReleases[index].platform ?? singleTypeReleaseData.platformsRequirements[index].platform
+                            : singleTypeRequirement.platform,
+                        minSupportedVersionCode: hasVersionReleaseData
+                            ? versionReleaseData.platformsVersionReleases[index].minSupportedVersion ?? singleTypeReleaseData.platformsRequirements[index].minSupportedVersionCode
+                            : singleTypeRequirement.minSupportedVersion,
+                        version: hasVersionReleaseData
+                            ? versionReleaseData.platformsVersionReleases[index].version ?? singleTypeReleaseData.platformsRequirements[index].version
+                            : singleTypeRequirement.version,
+                        versionCode: hasVersionReleaseData
+                            ? versionReleaseData.platformsVersionReleases[index].versionCode ?? singleTypeReleaseData.platformsRequirements[index].versionCode
+                            : singleTypeRequirement.versionCode,
+                        priority: hasVersionReleaseData
+                            ? versionReleaseData.platformsVersionReleases[index].priority ?? singleTypeReleaseData.platformsRequirements[index].priority : singleTypeRequirement.priority,
+                        downloadURL: hasVersionReleaseData
+                            ? versionReleaseData.platformsVersionReleases[index].downloadURL ?? singleTypeReleaseData.platformsRequirements[index].downloadURL : singleTypeRequirement.downloadURL
+    
+                    }
+    
+                );
+    
+                return platformsRequirementsOBJ.toJson();
+            }));
+            console.log('platformsRequirements', platformsRequirementsUpdated);
+            
+            
             const release = await strapi.documents("api::latest-version.latest-version",
             ).update({
                 documentId: singleTypeReleaseData.documentId,
@@ -125,6 +130,7 @@ module.exports = {
         } catch (error) {
             console.log("Error", error.toString())
         }
+    }
 
         const currentDate = new Date();
         const timeNow = currentDate.toISOString();
