@@ -25,14 +25,10 @@ WORKDIR /opt/app
 COPY --from=build /opt/app ./
 ENV PATH=/opt/node_modules/.bin:$PATH
 
-# Ensure the "node" user owns the application directory and set permissions
-RUN chown -R node:node /opt/app
-RUN chmod -R 755 /opt/app
-
-# Specifically give the "node" user write permissions to the uploads directory
+# Ensure the "node" user owns the application directory and has correct permissions
 RUN mkdir -p /opt/app/public/uploads && \
     chown -R node:node /opt/app/public/uploads && \
-    chmod -R 775 /opt/app/public/uploads
+    chmod -R 777 /opt/app/public/uploads
 
 # Switch to the "node" user
 USER node
