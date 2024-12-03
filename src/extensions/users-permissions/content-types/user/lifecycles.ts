@@ -6,8 +6,27 @@ export default {
     console.log("BeforeCreate Running>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>BeforeCreate Running");
     const { data, where, select, populate } = event.params;
     event.params.data.email = await modifyEmail(event.params.data.email);
+    try{
+      const freePlan = await strapi.documents('api::plan.plan').findMany({
+      
+ 
+        populate: "*",
+        filters:{
+          
+            planTitle:"Free"
+          
+        }
+      });
 
-    event.params.data.plan = "1";
+      if(freePlan){
+            event.params.data.plan = freePlan;
+      }
+    }catch(error){
+      
+    }
+ 
+  
+ 
 
     console.log(event.params.data);
     // let's do a 20% discount everytime
