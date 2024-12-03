@@ -71,7 +71,7 @@ module.exports = {
         //  * @param {Object[]} platformsRequirements - The new platform requirements for the version release.
         //  * @returns {Promise<Object>} - The updated version release data.
         //  *{
-        if(versionReleaseData.platformsVersionReleases!=null){
+        if(versionReleaseData!=null){
         if(versionReleaseData.platformsVersionReleases.length>0){
         try {
            
