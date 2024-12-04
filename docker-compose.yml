@@ -1,7 +1,7 @@
-# version: "3"docker buildx create \ --name container-builder \ --driver docker-container \--bootstrap --use
+
 services:
   strapi:
-    # container_name: Xefro_View_Api_V5
+    # container_name: Xefro_View_Api_V5 # Not Needed because using Docker Swarm 
     build: .
     # Change This Image name to Custom Image Docker Hub name Example sonata93/demo-app
     image: mosonata/xefro-view-api-v5-img1
