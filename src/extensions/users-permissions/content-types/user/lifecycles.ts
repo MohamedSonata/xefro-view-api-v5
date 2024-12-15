@@ -2,35 +2,22 @@ import payment from "../../../../api/payment/controllers/payment";
 
 export default {
   async beforeCreate(event) {
-    console.log("BeforeCreate Running");
-    console.log("BeforeCreate Running>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>BeforeCreate Running");
+
     const { data, where, select, populate } = event.params;
     event.params.data.email = await modifyEmail(event.params.data.email);
-    try{
+    try {
       const freePlan = await strapi.documents('api::plan.plan').findMany({
-      
- 
         populate: "*",
-        filters:{
-          
-            planTitle:"Free"
-          
+        filters: {
+          planTitle: "Free"
         }
       });
-
-      if(freePlan){
-            event.params.data.plan = freePlan;
+      if (freePlan) {
+        event.params.data.plan = freePlan;
       }
-    }catch(error){
-      
+    } catch (error) {
     }
- 
-  
- 
 
-    console.log(event.params.data);
-    // let's do a 20% discount everytime
-    //   event.params.data.price = event.params.data.price * 0.8;
   },
 
   async afterCreate(event, strapi) {
@@ -46,17 +33,12 @@ export default {
     gracePeriodEndDate.setDate(gracePeriodEndDate.getDate() + 10); // Or however many days you need
 
     const updatedSubscription = {
-
-
       subscriptionStatus: "trialing",
-
       trialEndDate: trialEndDate.toISOString(),
       gracePeriodEndDate: gracePeriodEndDate.toISOString(),
       autoRenew: false,
-
-
     }
-    
+
     try {
       // event.params.data.subscription = updatedSubscription;
       // await strapi.plugin('users-permissions').service("user").edit(result.id, {
@@ -71,10 +53,8 @@ export default {
           }
         });
       });
-
-
     } catch (error) {
-      console.log(error);
+      strapi.log.warn(error);
     }
 
     // do something to the result;

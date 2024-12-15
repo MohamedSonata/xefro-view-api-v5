@@ -13,7 +13,7 @@ export default {
         if (users.length > 0) {
             for (const user of users) {
                 const sanitizedUser = await sanitizeUser(user, {});
-                strapi.log.info(`sanitizedUser CronJob line=16/usersCronJob ${sanitizedUser}`,);
+             
 
                 await userCronJobsServices.default.updateUserSubscriptionStatus(user);
             }
