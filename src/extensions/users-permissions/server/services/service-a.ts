@@ -183,9 +183,7 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
           });
           const sanitizedUser = await utils.default.userUtils({ strapi }).sanitizeUser(userAfterEdited, ctx);
 
-          return ctx.send({
-            data: sanitizedUser
-          });
+          return ctx.send(sanitizedUser);
         }
         if (ctx.request.body.lastDeviceUsed != null) {
           userAfterEdited = await strapi.documents('plugin::users-permissions.user').update({
@@ -229,9 +227,7 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
 
         const sanitizedUser = await utils.default.userUtils({ strapi }).sanitizeUser(userAfterEdited, ctx);
 
-        return ctx.send({
-          data: sanitizedUser
-        });
+        return ctx.send(sanitizedUser);
       }
       catch (e) {
         strapi.log.info(" Not able to update and thing by you key defined (user-Services.ts)L237");
