@@ -157,7 +157,8 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
     },
 
     async updateUserBySpecificFieldKey(ctx) {
-   
+      
+     
      
       var userAfterEdited;
       // Function to check if all required fields are present in the request body
@@ -169,17 +170,14 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
         if (hasAllRequiredFields(ctx.request.body)) {
           userAfterEdited = await strapi.documents('plugin::users-permissions.user').update({
             documentId: ctx.params.id,
+            
             data: {
 
               lastDeviceUsed: ctx.request.body.lastDeviceUsed,
               subscription: ctx.request.body.subscription,
               billingAddress: ctx.request.body.billingAddress,
             },
-            populate: {
-              lastDeviceUsed: true,
-              subscription: true,
-              billingAddress: true,
-            }
+            ...ctx.request.query
           });
           const sanitizedUser = await utils.default.userUtils({ strapi }).sanitizeUser(userAfterEdited, ctx);
 
@@ -193,9 +191,7 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
               lastDeviceUsed: ctx.request.body.lastDeviceUsed,
 
             },
-            populate: {
-              lastDeviceUsed: true
-            }
+            ...ctx.request.query
           });
         } else if (ctx.request.body.subscription != null) {
           userAfterEdited = await strapi.documents('plugin::users-permissions.user').update({
@@ -204,26 +200,19 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
               subscription: ctx.request.body.subscription,
 
             },
-            populate: {
-              subscription: true
-            }
+            ...ctx.request.query
           });
         } else if (ctx.request.body.billingAddress != null) {
           userAfterEdited = await strapi.documents('plugin::users-permissions.user').update({
             documentId: ctx.params.id,
             data: {
-
               billingAddress: ctx.request.body.billingAddress,
             },
-            populate: {
-              billingAddress: true
-            }
+            ...ctx.request.query
           });
         } else {
           strapi.log.info(" Not able to update and thing by you key defined");
         }
-
-
 
         const sanitizedUser = await utils.default.userUtils({ strapi }).sanitizeUser(userAfterEdited, ctx);
 
