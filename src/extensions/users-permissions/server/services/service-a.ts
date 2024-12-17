@@ -4,10 +4,13 @@
 import type { Core } from '@strapi/strapi';
 import * as utils from '../utils';
 import strapiUtils from '@strapi/utils';
+import geoip from 'fast-geoip';
 import * as lodash from 'lodash';
 // import { PluginUsersPermissionsUser } from '../../../../../types/generated/contentTypes';
 // import userPlugin from '@strapi/plugin-users-permissions/server/services/user';
 import userUtils from '../utils/user';
+import getDateTimeInfo from '../../../../core/utils/get-world-datetime';
+import { isParenthesizedTypeNode } from 'typescript';
 
 const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
 
@@ -26,6 +29,8 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
 
     async sendOTPMessage(ctx) {
       let { phoneNumber } = ctx.request.body;
+      console.log(ctx.request.headers);
+      console.log(ctx.request.headers['x-forwarded-for'] );
 
 
       let userVerficationData;
@@ -40,6 +45,17 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
           otpMessage: userVerficationData,
         },
       });
+    },
+    async getRealWorldDateTimeByTimeZone(ctx){
+      // let { timezone,ip } = ctx.request.body;
+      const testIp = "176.29.59.60";
+const geo = await geoip.lookup(testIp);
+
+console.log(geo);
+      let ip= ctx.request.headers['x-forwarded-for'] ;
+      console.log("publicIp",ip);
+      console.log("headers",ctx.request.headers);
+      await getDateTimeInfo("Asia/Amman",ip);
     },
     async forgotPasswordByPhoneNumber(ctx) {
       let { phoneNumber } = ctx.request.body;

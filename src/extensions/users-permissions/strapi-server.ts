@@ -7,8 +7,20 @@ import * as services from "./server/services/index";
 import type { Core } from '@strapi/strapi';
 export default async (plugin,  ) => {
 
- 
+ // Get Real World DateTime based on time zone 
+  plugin.controllers.user.getRealWorldDateTimeByTimeZone = async (ctx) => {
+    return await services.default.serviceA( {strapi} ).getRealWorldDateTimeByTimeZone(ctx);
+  };
 
+
+  plugin.routes["content-api"].routes.push({
+    method: "GET",
+    path: "/user/timezone/time",
+    handler: "user.getRealWorldDateTimeByTimeZone",
+    config: {
+      prefix: "",
+    },
+  });
   plugin.controllers.user.sendOTPMessage = async (ctx) => {
     return await services.default.serviceA( {strapi} ).sendOTPMessage(ctx);
   };
