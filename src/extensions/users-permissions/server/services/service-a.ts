@@ -52,7 +52,7 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
 const geo = await geoip.lookup(testIp);
 
 console.log(geo);
-      let ip= ctx.request.headers['x-forwarded-for'] ;
+const ip = ctx.request.headers['x-forwarded-for'] || ctx.request.connection.remoteAddress;
       console.log("publicIp",ip);
       console.log("headers",ctx.request.headers);
       await getDateTimeInfo("Asia/Amman",ip);
