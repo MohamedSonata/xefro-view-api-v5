@@ -5,22 +5,22 @@ export default {
 
     const { data, where, select, populate } = event.params;
     event.params.data.email = await modifyEmail(event.params.data.email);
-    try {
-      const freePlans = await strapi.documents('api::plan.plan').findMany({
-        populate: "*",
-        filters: {
-          planTitle: "Free"
-        }
-      });
+    // try {
+    //   const freePlans = await strapi.documents('api::plan.plan').findMany({
+    //     populate: "*",
+    //     filters: {
+    //       planTitle: "Free"
+    //     }
+    //   });
      
-      if (freePlans) {
-        event.params.data.plan = 
-        freePlans[0].documentId.toString()
-        ;
+    //   if (freePlans) {
+    //     event.params.data.plan = 
+    //     freePlans[0].documentId.toString()
+    //     ;
       
-      }
-    } catch (error) {
-    }
+    //   }
+    // } catch (error) {
+    // }
 
   },
 
@@ -56,10 +56,25 @@ export default {
       // await strapi.plugin('users-permissions').service("user").edit(result.id, {
       //   subscription:{...updatedSubscription}
       // });
+     
+     
+     
       process.nextTick(async () => {
+        const freePlans = await strapi.documents('api::plan.plan').findMany({
+          populate: "*",
+          filters: {
+            planTitle: "Free"
+          }
+        });
+        console.log(freePlans[0].documentId.toString());
+        console.log(freePlans);
+        console.log(freePlans.length);
+        console.log(freePlans);
         const userAfterEdited = await strapi.documents('plugin::users-permissions.user').update({
           documentId: result.documentId,
-          data: { subscription: updatedSubscription },
+          data: { subscription: updatedSubscription ,
+            plan:freePlans[0].id.toString()
+          },
           populate: {
             subscription: true
           }
