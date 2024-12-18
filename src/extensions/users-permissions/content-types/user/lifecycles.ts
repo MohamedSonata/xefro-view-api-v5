@@ -66,14 +66,13 @@ export default {
             planTitle: "Free"
           }
         });
-        console.log(freePlans[0].documentId.toString());
-        console.log(freePlans);
-        console.log(freePlans.length);
-        console.log(freePlans);
+        
         const userAfterEdited = await strapi.documents('plugin::users-permissions.user').update({
           documentId: result.documentId,
           data: { subscription: updatedSubscription ,
-            plan:freePlans[0].documentId.toString()
+            plan:{
+              connect: [freePlans[0].documentId.toString()]
+            }
           },
           populate: {
             subscription: true
