@@ -50,9 +50,13 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
 
       const geo = await geoip.lookup(ctx.request.ip);
 
-      const dateTimeInfoByTimeZoneAndIP = await getDateTimeInfo(geo.timezone, ip);
+      const dateTimeInfoByTimeZoneAndIP = await getDateTimeInfo(geo.timezone, ctx.request.ip);
 
-      return ctx.send(dateTimeInfoByTimeZoneAndIP);
+      return ctx.send({
+        getTimeInfo:dateTimeInfoByTimeZoneAndIP,
+        ip:ctx.request.ip,
+        geo:geo
+      });
     },
 
     async forgotPasswordByPhoneNumber(ctx) {
