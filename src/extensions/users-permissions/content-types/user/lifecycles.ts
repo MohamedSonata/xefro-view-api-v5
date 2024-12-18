@@ -12,10 +12,12 @@ export default {
           planTitle: "Free"
         }
       });
-      console.log("freePlans",freePlans);
+     
       if (freePlans) {
-        event.params.data.plan = freePlans[0];
-        console.log("freePlansPAramsData", event.params.data.plan);
+        event.params.data.plan = 
+        freePlans[0].documentId.toString()
+        ;
+      
       }
     } catch (error) {
     }
