@@ -73,7 +73,7 @@ export default {
         const userAfterEdited = await strapi.documents('plugin::users-permissions.user').update({
           documentId: result.documentId,
           data: { subscription: updatedSubscription ,
-            plan:freePlans[0].id.toString()
+            plan:freePlans[0].documentId.toString()
           },
           populate: {
             subscription: true
