@@ -6,14 +6,16 @@ export default {
     const { data, where, select, populate } = event.params;
     event.params.data.email = await modifyEmail(event.params.data.email);
     try {
-      const freePlan = await strapi.documents('api::plan.plan').findMany({
+      const freePlans = await strapi.documents('api::plan.plan').findMany({
         populate: "*",
         filters: {
           planTitle: "Free"
         }
       });
-      if (freePlan) {
-        event.params.data.plan = freePlan;
+      console.log("freePlans",freePlans);
+      if (freePlans) {
+        event.params.data.plan = freePlans[0];
+        console.log("freePlansPAramsData", event.params.data.plan);
       }
     } catch (error) {
     }
@@ -37,6 +39,14 @@ export default {
       trialEndDate: trialEndDate.toISOString(),
       gracePeriodEndDate: gracePeriodEndDate.toISOString(),
       autoRenew: false,
+      startDate: now,
+      endDate: trialEndDate.toISOString(),
+      renewalDate: trialEndDate.toISOString(),
+      cancellationReason: "",
+      subscribedUpdateAt: now,
+      subscribedAt: now,
+
+
     }
 
     try {

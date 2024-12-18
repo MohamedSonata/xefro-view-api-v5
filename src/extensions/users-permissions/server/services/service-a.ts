@@ -29,8 +29,7 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
 
     async sendOTPMessage(ctx) {
       let { phoneNumber } = ctx.request.body;
-      console.log(ctx.request.headers);
-      console.log(ctx.request.headers['x-forwarded-for'] );
+   
 
 
       let userVerficationData;
@@ -46,17 +45,16 @@ const serviceA = ({ strapi }: { strapi: Core.Strapi }) => {
         },
       });
     },
-    async getRealWorldDateTimeByTimeZone(ctx){
-      // let { timezone,ip } = ctx.request.body;
-      const testIp = "176.29.59.60";
-const geo = await geoip.lookup(testIp);
+    async getRealWorldDateTimeByTimeZone(ctx) {
+      let { ip } = ctx.request;
 
-console.log(geo);
-const ip = ctx.request.headers['x-forwarded-for'] || ctx.request.connection.remoteAddress;
-      console.log("publicIp",ip);
-      console.log("headers",ctx.request.headers);
-      await getDateTimeInfo("Asia/Amman",ip);
+      const geo = await geoip.lookup(ctx.request.ip);
+
+      const dateTimeInfoByTimeZoneAndIP = await getDateTimeInfo(geo.timezone, ip);
+
+      return ctx.send(dateTimeInfoByTimeZoneAndIP);
     },
+
     async forgotPasswordByPhoneNumber(ctx) {
       let { phoneNumber } = ctx.request.body;
 
