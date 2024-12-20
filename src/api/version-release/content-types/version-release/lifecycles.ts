@@ -85,7 +85,7 @@ async function updateLatestVersionAfterCreate(singleTypeReleaseData, versionRele
                 });
               
             } catch (error) {
-                console.log("Error", error.toString())
+               strapi.log.error("Error", error.toString())
             }
         }
     }

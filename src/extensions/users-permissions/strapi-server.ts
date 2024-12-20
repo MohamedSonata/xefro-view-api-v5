@@ -4,7 +4,6 @@
 import * as services from "./server/services/index";
 // import lifecycles from './content-types/user/lifecycles';
 // import { Context, Next } from "koa";
-import type { Core } from '@strapi/strapi';
 export default async (plugin,  ) => {
 
  // Get Real World DateTime based on time zone 
@@ -21,15 +20,15 @@ export default async (plugin,  ) => {
       prefix: "",
     },
   });
-  plugin.controllers.user.sendOTPMessage = async (ctx) => {
-    return await services.default.serviceA( {strapi} ).sendOTPMessage(ctx);
+  plugin.controllers.user.sendVerficationEmail = async (ctx) => {
+    return await services.default.serviceA( {strapi} ).sendVerficationEmail(ctx);
   };
 
 
   plugin.routes["content-api"].routes.push({
     method: "POST",
-    path: "/user/auth/otp-message",
-    handler: "user.sendOTPMessage",
+    path: "/user/send-otp",
+    handler: "user.sendVerficationEmail",
     config: {
       prefix: "",
     },
@@ -37,7 +36,7 @@ export default async (plugin,  ) => {
 
     // Custom User update Components until they fixinx the error while update components as v4
     plugin.controllers.user.updateUserBySpecificFieldKey = async (ctx,next) => {
-      console.log(strapi.documents);
+      
      
      
 
@@ -51,42 +50,11 @@ export default async (plugin,  ) => {
         prefix: "",
       },
     });
-  // Forgot Password by PhoneNumber Route And Controller Methods
-  plugin.controllers.user.forgotPasswordByPhoneNumber = async (ctx) => {
-
-    return await services.default.serviceA( {strapi} ).forgotPasswordByPhoneNumber(ctx);
-  };
-  plugin.routes["content-api"].routes.push({
-    method: "POST",
-    path: "/user/auth/forgot-phone-password",
-    handler: "user.forgotPasswordByPhoneNumber",
-    config: {
-      prefix: "",
-    },
-  });
-
- 
-
-  plugin.controllers.user.registerByEmailAndPhoneNumber = async (ctx, next) => {
-
-
-
-    return await services.default.serviceA( {strapi} ).registerByEmailAndPhoneNumber(ctx, next);
-  };
-  // Configure the route for creating a user
-  plugin.routes["content-api"].routes.push({
-    method: "POST",
-    path: "/user/auth/local/register", // this path for Auth section register Endpoint
-    handler: "user.registerByEmailAndPhoneNumber", // Use the correct handler reference based on controller 
-    config: {
-      prefix: "",
-    },
-  });
 
 
 
   plugin.controllers.user.forgotPassword = async (ctx, next) => {
-    return await services.default.serviceA( {strapi} ).forgotPassword(ctx, next);
+    return await services.default.serviceA( {strapi} ).forgotPassword(ctx);
   };;
 
   plugin.routes["content-api"].routes.push({
@@ -97,19 +65,54 @@ export default async (plugin,  ) => {
       prefix: "",
     },
   });
+     //TODO: NOT USED 
+  // Forgot Password by PhoneNumber Route And Controller Methods
+  // plugin.controllers.user.forgotPasswordByPhoneNumber = async (ctx) => {
 
-  plugin.controllers.user.callback = async (ctx, next) => {
+  //   return await services.default.serviceA( {strapi} ).forgotPasswordByPhoneNumber(ctx);
+  // };
+  // plugin.routes["content-api"].routes.push({
+  //   method: "POST",
+  //   path: "/user/auth/forgot-phone-password",
+  //   handler: "user.forgotPasswordByPhoneNumber",
+  //   config: {
+  //     prefix: "",
+  //   },
+  // });
 
-    return await services.default.serviceA( {strapi} ).callback(ctx, next);
-  };
+ 
+//TODO: NOT USED
+  // plugin.controllers.user.registerByEmailAndPhoneNumber = async (ctx, next) => {
 
-  plugin.routes["content-api"].routes.push({
-    method: "POST",
-    path: "/user/auth/local", // this path for Auth section register Endpoint
-    handler: "user.callback", // Use the correct handler reference based on controller used
-    config: {
-      prefix: "",
-    },
-  });
+
+
+  //   return await services.default.serviceA( {strapi} ).registerByEmailAndPhoneNumber(ctx, next);
+  // };
+  // // Configure the route for creating a user
+  // plugin.routes["content-api"].routes.push({
+  //   method: "POST",
+  //   path: "/user/auth/local/register", // this path for Auth section register Endpoint
+  //   handler: "user.registerByEmailAndPhoneNumber", // Use the correct handler reference based on controller 
+  //   config: {
+  //     prefix: "",
+  //   },
+  // });
+
+
+//TODO: NOT USED
+  // plugin.controllers.user.callback = async (ctx, next) => {
+
+  //   return await services.default.serviceA( {strapi} ).callback(ctx, next);
+  // };
+
+  // plugin.routes["content-api"].routes.push({
+  //   method: "POST",
+  //   path: "/user/auth/local", // this path for Auth section register Endpoint
+  //   handler: "user.callback", // Use the correct handler reference based on controller used
+  //   config: {
+  //     prefix: "",
+  //   },
+  // });
+
   return plugin;
 };
